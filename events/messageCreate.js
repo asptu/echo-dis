@@ -18,7 +18,14 @@ module.exports = {
                 let polling = client.channels.cache.get(pChannel) 
 
                 try {
-                    if (message.attachments.size > 0) return message.channel.send('currently no attachment support (send link pls)')
+                    if (message.attachments.size > 0) {
+                        message.attachments.forEach(attachment => {
+                            const ImageLink = attachment.proxyURL;
+                            polling.send(`${ImageLink}`)
+                        });
+                    }
+                    if (message.content == '' || undefined) return
+
                         polling.send(message.content)   
 
                   } catch (err) {
