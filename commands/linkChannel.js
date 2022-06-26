@@ -11,12 +11,11 @@ module.exports = {
         const pChannel = interaction.options.getChannel('channel');
         const cChannel = interaction.channel
 
-        let bothChannels = [];
+        const fs =  require('fs')
 
-        bothChannels.push(pChannel)
-        bothChannels.push(cChannel)
+        fs.writeFileSync('./data/cChannel.txt', cChannel.id);
+        fs.writeFileSync('./data/pChannel.txt', pChannel.id);
 
-        
         interaction.reply({
             content: `polling all messages to ${pChannel}`,
             emphemeral: true
