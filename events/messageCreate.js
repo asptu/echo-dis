@@ -17,8 +17,15 @@ module.exports = {
 
                 let polling = client.channels.cache.get(pChannel) 
 
-                if (message.content == undefined || null) return
-                    polling.send(message.content)
+                try {
+                    if (message.attachments.size > 0) return message.channel.send('currently no attachment support (send link pls)')
+                        polling.send(message.content)   
+
+                  } catch (err) {
+                  console.log(err)
+                    message.channel.send('errored')
+                  
+                  }
 
          }
     
